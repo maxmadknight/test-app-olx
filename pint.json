@@ -1,0 +1,74 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "no_unused_imports": true,
+    "use_arrow_functions": true,
+    "ternary_to_null_coalescing": true,
+    "ternary_to_elvis_operator": true,
+    "assign_null_coalescing_to_coalesce_equal": true,
+    "declare_strict_types": true,
+    "binary_operator_spaces": {
+      "operators": {
+        "=>": "align",
+        "=": "align"
+      }
+    },
+    "single_import_per_statement": false,
+    "group_import": {
+      "group_types": [
+        "functions"
+      ]
+    },
+    "class_attributes_separation": {
+      "elements": {
+        "const": "one",
+        "method": "one",
+        "property": "one"
+      }
+    },
+    "ordered_class_elements": {
+      "order": [
+        "use_trait",
+        "public",
+        "protected",
+        "private",
+        "case",
+        "constant",
+        "constant_public",
+        "constant_protected",
+        "constant_private",
+        "property",
+        "property_static",
+        "property_public",
+        "property_protected",
+        "property_private",
+        "property_public_readonly",
+        "property_protected_readonly",
+        "property_private_readonly",
+        "property_public_static",
+        "property_protected_static",
+        "property_private_static",
+        "method",
+        "method_abstract",
+        "method_static",
+        "method_public",
+        "method_protected",
+        "method_private",
+        "method_public_abstract",
+        "method_protected_abstract",
+        "method_private_abstract",
+        "method_public_abstract_static",
+        "method_protected_abstract_static",
+        "method_private_abstract_static",
+        "method_public_static",
+        "method_protected_static",
+        "method_private_static"
+      ]
+    }
+  },
+  "exclude": [
+    "ide",
+    "routes",
+    "app/Support/refine-laravel"
+  ]
+}
