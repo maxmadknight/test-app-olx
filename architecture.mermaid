@@ -1,0 +1,36 @@
+graph TD
+    User[User] --> API[API Controllers]
+    API --> Validation[Request Validation]
+    Validation --> Rules[Custom Rules]
+    API --> Models[Models]
+    Models --> DB[(Database)]
+
+    Queue[Queue Worker] --> Jobs[Jobs]
+    Jobs --> Services[Services]
+    Services --> ExternalAPI[OLX Website]
+
+    Jobs --> Notifications[Notifications]
+    Notifications --> Email[Email Service]
+    Email --> User
+
+    Scheduler[Scheduler] --> Commands[Console Commands]
+    Commands --> Queue
+
+    subgraph Models
+        Advertisement
+        Subscription
+        AdvertisementHistory
+    end
+
+    subgraph Controllers
+        SubscribeController
+        VerifyEmailController
+    end
+
+    subgraph Services
+        OlxPriceFetcherService
+    end
+
+    subgraph Jobs
+        CheckPriceForUrl
+    end

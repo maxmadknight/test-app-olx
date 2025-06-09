@@ -1,0 +1,33 @@
+sequenceDiagram
+participant User
+participant API
+participant Subscription
+participant Email
+participant Queue
+participant OlxService
+participant Notification
+
+    %% Subscription Flow
+    User->>API: POST /api/subscribe (url, email)
+    API->>Subscription: Validate request
+    Subscription->>Subscription: Create or find advertisement
+    Subscription->>Subscription: Create subscription with verification token
+    Subscription->>Email: Send verification email
+    Email-->>User: Receive verification email
+    API-->>User: Return success response
+
+    %% Verification Flow
+    User->>API: GET /api/verify-email (token, email)
+    API->>Subscription: Validate token and email
+    Subscription->>Subscription: Mark subscription as verified
+    API-->>User: Return verification success
+
+    %% Price Checking Flow
+    Note over Queue: Scheduled task runs
+    Queue->>Queue: Enqueue price checks for all advertisements
+    Queue->>OlxService: Check price for each advertisement
+    OlxService->>OlxService: Fetch price from OLX (with fallbacks)
+    OlxService->>Subscription: Update price if changed
+    Subscription->>Subscription: Record price history
+    Subscription->>Notification: Notify verified subscribers
+    Notification-->>User: Receive price change notification
